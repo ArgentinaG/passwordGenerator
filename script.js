@@ -1,26 +1,55 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
+function generatePassword(charset, length) {
+  var length = 8
+  var retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+    retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
+}
+
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  // Write password to the #password input
 
+  const length = parseInt(prompt("What length do you want your password?"))
+  // check length
+
+  //Confirm Password meets length criteria
+  if (length < 8 || length > 128) {
+    alert("Password must be a minimum of 8 characters.");
+    return
+  }
+
+  var character = ""
+  const useUpperCase = confirm("Do you want to use an upper case letter?")
+  if(useUpperCase) {
+    character += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  }
+  const useLowerCase = confirm("Do you want to use a lower case letter?")
+  if(useLowerCase) {
+    character += "abcdefghijklmnopqrstuvwxyz"
+  }
+  const useNumbers = confirm("Do you want to use a number?")
+  if(useNumber) {
+    character += "0123456789"
+  }
+
+  const useSymbols = confirm("Do you want to use a symbol?")
+  if(useSymbols) {
+    character += "!@#$%&*"
+  }
+  
+  var password = generatePassword(character, length);
+  var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
 }
 
+
+
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-function generatePassword() {
-  var length = 8,
-      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-      retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-  }
-  return retVal;
-}
