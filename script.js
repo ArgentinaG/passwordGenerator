@@ -30,7 +30,7 @@ function writePassword() {
     character += "abcdefghijklmnopqrstuvwxyz"
   }
   const useNumbers = confirm("Do you want to use a number?")
-  if(useNumber) {
+  if(useNumbers) {
     character += "0123456789"
   }
 
@@ -38,14 +38,12 @@ function writePassword() {
   if(useSymbols) {
     character += "!@#$%&*"
   }
-  
+
   var password = generatePassword(character, length);
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 
 }
-
-
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
